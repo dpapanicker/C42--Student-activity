@@ -307,7 +307,47 @@ class Game {
       collected.remove();
     });
   }
+  
+handleObstacleCollision(index){
 
+  
+}
+  
+  handleCarACollisionWithCarB(index) {
+    if (index === 1) {
+      if (cars[index - 1].collide(cars[1])) {
+        if (this.leftKeyActive) {
+          player.positionX += 100;
+        } else {
+          player.positionX -= 100;
+        }
+
+        //Reducing Player Life
+        if (player.life > 0) {
+          player.life -= 185 / 4;
+        }
+
+        player.update();
+      }
+    }
+
+    if (index === 2) {
+      if (cars[index - 1].collide(cars[0])) {
+        if (this.leftKeyActive) {
+          player.positionX += 100;
+        } else {
+          player.positionX -= 100;
+        }
+
+        //Reducing Player Life
+        if (player.life > 0) {
+          player.life -= 185 / 4;
+        }
+
+        player.update();
+      }
+    }
+  }
   showRank() {
     swal({
       title: `Awesome!${"\n"}Rank${"\n"}${player.rank}`,
